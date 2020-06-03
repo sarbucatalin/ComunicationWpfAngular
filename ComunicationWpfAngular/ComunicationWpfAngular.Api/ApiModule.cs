@@ -7,7 +7,7 @@ namespace ComunicationWpfAngular.Api
     {
         protected override void Load(ContainerBuilder builder)
         {
-            var bus = RabbitHutch.CreateBus("host=localhost;virtualHost=/;username=guest;password=guest", r => r.Register<ITypeNameSerializer, CustomEasyNetQTypeNameSerializer>());
+            var bus = RabbitHutch.CreateBus("host=localhost;virtualHost=/;username=guest;password=guest");
             builder.RegisterInstance(bus).SingleInstance();
             builder.RegisterType<MessageReceiver>().As<IMessageReceiver>();
         }

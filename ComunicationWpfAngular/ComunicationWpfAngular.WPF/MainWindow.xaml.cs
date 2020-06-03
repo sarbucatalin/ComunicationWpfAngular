@@ -33,7 +33,7 @@ namespace ComunicationWpfAngular.WPF
 
         private void SendMessage_Click(object sender, RoutedEventArgs e)
         {
-            bus.Send<MessageContract>("WpfToApi", new MessageContract { Value = MessageBox.Text });
+            bus.Send<string>("WpfToApi", Newtonsoft.Json.JsonConvert.SerializeObject(new MessageContract { Value = MessageBox.Text }));
         }
     }
 }
