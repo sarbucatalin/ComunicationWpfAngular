@@ -12,7 +12,10 @@ namespace ComunicationWpfAngular.WPF
         private readonly IBus bus;
         public MainWindow()
         {
-            bus = RabbitHutch.CreateBus("host=localhost;virtualHost=/;username=guest;password=guest");
+            bus = RabbitHutch.CreateBus("host=localhost;virtualHost=/;username=guest;password=guest",
+                serviceRegister => serviceRegister.Register<ISerializer>(serviceProvider => new MyJsonSerializer())
+                );
+            
             InitializeComponent();
 
         }
@@ -33,7 +36,7 @@ namespace ComunicationWpfAngular.WPF
 
         private void SendMessage_Click(object sender, RoutedEventArgs e)
         {
-            bus.Send<string>("WpfToApi", Newtonsoft.Json.JsonConvert.SerializeObject(new MessageContract { Value = MessageBox.Text }));
+            bus.Send<MessageContract>("WpfToApi",new MessageContract { Value = MessageBox.Text });
         }
     }
 }

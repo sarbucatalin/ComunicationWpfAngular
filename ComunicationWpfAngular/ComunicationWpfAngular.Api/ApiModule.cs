@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using EasyNetQ;
+using ComunicationWpfAngular.Contracts;
 
 namespace ComunicationWpfAngular.Api
 {
@@ -7,7 +8,9 @@ namespace ComunicationWpfAngular.Api
     {
         protected override void Load(ContainerBuilder builder)
         {
-            var bus = RabbitHutch.CreateBus("host=localhost;virtualHost=/;username=guest;password=guest");
+            var bus = RabbitHutch.CreateBus("host=localhost;virtualHost=/;username=guest;password=guest",
+                serviceRegister => serviceRegister.Register<ISerializer>(serviceProvider => new MyJsonSerializer())
+                );
             builder.RegisterInstance(bus).SingleInstance();
             builder.RegisterType<MessageReceiver>().As<IMessageReceiver>();
         }

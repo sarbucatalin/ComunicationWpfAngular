@@ -18,7 +18,7 @@ namespace ComunicationWpfAngular.Api
 
         public void Start()
         {
-            _bus.Receive<string>("WpfToApi",
+            _bus.Receive<MessageContract>("WpfToApi",
                 message => _resolver.Resolve<IMessageReceiver>().Execute(message));
         }
     }

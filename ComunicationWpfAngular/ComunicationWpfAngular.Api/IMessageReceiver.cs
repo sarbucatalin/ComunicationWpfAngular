@@ -5,6 +5,6 @@ namespace ComunicationWpfAngular.Api
 {
     public interface IMessageReceiver
     {
-        Task Execute(string message);
+        Task Execute(MessageContract message);
     }
 }

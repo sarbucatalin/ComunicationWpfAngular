@@ -14,10 +14,9 @@ namespace ComunicationWpfAngular.Api
             _hubContext = hubContext;
         }
 
-        public async Task Execute(string message)
+        public async Task Execute(MessageContract message)
         {
-            var msg = Newtonsoft.Json.JsonConvert.DeserializeObject<MessageContract>(message);
-            await _hubContext.Clients.All.SendAsync("SignalRMessageReceived", msg.Value);
+            await _hubContext.Clients.All.SendAsync("SignalRMessageReceived", message.Value);
         }
     }
 }
