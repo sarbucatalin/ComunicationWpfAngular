@@ -1,7 +1,10 @@
 <div class="container">
-  <textarea #textbox>
-    Some text here...
-  </textarea>
-
-  <div>Here should show msg from Rabbit: {{ messageFromRabbit }}</div>
+  <div style="border: 1px solid black; min-height: 400px; width: 200px;">
+    {{ messageFromRabbit }}
+  </div>
+  <br />
+  <textarea #textbox> </textarea>
+  <button type="button" name="send" (click)="sendMessage(textbox.value)">
+    Send Message
+  </button>
 </div>

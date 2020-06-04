@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using ComunicationWpfAngular.Contracts;
 using EasyNetQ;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ComunicationWpfAngular.Api.Controllers
